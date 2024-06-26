@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('fileInput'); // Input pour sélectionner le fichier
     const readButton = document.getElementById('readButton'); // Bouton pour lire le fichier
     const downloadButton = document.getElementById('downloadButton'); // Bouton pour télécharger la liste
-    const banList = document.getElementById('banList'); // Liste des utilisateurices bannis
+    const banList = document.getElementById('banList'); // Liste des Utilisateurices Banni.e.s
 
-    let utilisateursBannis = []; // Tableau pour stocker les utilisateurs bannis
+    let utilisateursBannis = []; // Tableau pour stocker les Utilisateurices Banni.e.s
 
     // Ajoute un écouteur d'événement au bouton "Lire le fichier"
     readButton.addEventListener('click', lireFichier);
@@ -38,27 +38,27 @@ document.addEventListener('DOMContentLoaded', () => {
             complete: resultats => {
                 // Mappe les données pour récupérer les usernames et filtre les valeurs non définies
                 utilisateursBannis = resultats.data.map(row => row['userName']).filter(Boolean);
-                afficherUtilisateurs(utilisateursBannis); // Affiche les utilisateurs bannis dans l'interface
+                afficherUtilisateurs(utilisateursBannis); // Affiche les Utilisateurices Banni.e.s dans l'interface
                 downloadButton.classList.remove('hidden'); // Affiche le bouton de téléchargement
-                banList.classList.remove('hidden'); // Affiche la liste des utilisateurs bannis
+                banList.classList.remove('hidden'); // Affiche la liste des Utilisateurices Banni.e.s
             },
             error: error => alert("Erreur lors de l'analyse du fichier CSV: " + error.message)
         });
     }
 
-    // Fonction pour afficher les utilisateurs bannis dans la liste
+    // Fonction pour afficher les Utilisateurices Banni.e.s dans la liste
     function afficherUtilisateurs(utilisateurs) {
-        banList.innerHTML = ''; // Efface la liste précédente des utilisateurices bannis
+        banList.innerHTML = ''; // Efface la liste précédente des Utilisateurices Banni.e.s
         utilisateurs.forEach(utilisateur => {
-            const li = document.createElement('li'); // Crée un élément <li> pour chaque utilisateurices
-            li.textContent = utilisateur; // Ajoute le nom d'utilisateur au texte de l'élément <li>
-            banList.appendChild(li); // Ajoute l'élément <li> à la liste des utilisateurices bannis
+            const li = document.createElement('li'); // Crée un élément <li> pour chaque Utilisateurices
+            li.textContent = utilisateur; // Ajoute le nom d'Utilisateurices au texte de l'élément <li>
+            banList.appendChild(li); // Ajoute l'élément <li> à la liste des Utilisateurices Banni.e.s
         });
     }
 
-    // Fonction pour télécharger la liste des utilisateurs bannis au format texte
+    // Fonction pour télécharger la liste des Utilisateurices Banni.e.s au format texte
     function telechargerListe() {
-        const contenuTexte = utilisateursBannis.join('\n'); // Convertit le tableau en texte avec un.e utilisateurice par ligne
+        const contenuTexte = utilisateursBannis.join('\n'); // Convertit le tableau en texte avec un.e Utilisateurices par ligne
         const blob = new Blob([contenuTexte], { type: 'text/plain' }); // Crée un Blob à partir du texte
         const url = URL.createObjectURL(blob); // Crée une URL pour le Blob
         const a = document.createElement('a'); // Crée un élément <a> pour le téléchargement
